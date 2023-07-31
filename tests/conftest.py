@@ -2,6 +2,7 @@ import random
 import string
 import pytest
 from selenium import webdriver
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 @pytest.fixture()
@@ -11,6 +12,10 @@ def driver():
     browser.maximize_window()
     yield browser
     browser.quit()
+
+@pytest.fixture()
+def wait(driver):
+    return WebDriverWait(driver, 10)
 
 @pytest.fixture()
 def get_name():
